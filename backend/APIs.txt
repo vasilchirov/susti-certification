@@ -1,0 +1,5 @@
+GET (/labels) - get all labels
+GET (/certificates/:id) - specific certificate
+GET (/certificates) - get all certificates
+
+POST (/certificate) - add new certificates
