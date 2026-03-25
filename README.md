@@ -1,3 +1,3 @@
 # susti-certification
-
-- run npm install to get the dependencies for the backend
+- run ````npm run dev```` to start the server
+- run ````npm install```` to get the dependencies for the backend
