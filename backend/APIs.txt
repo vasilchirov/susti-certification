@@ -1,5 +1,8 @@
-GET (/labels) - get all labels
 GET (/certificates/:id) - specific certificate
 GET (/certificates) - get all certificates
-
 POST (/certificate) - add new certificates
+
+GET (/labels) - get all labels
+
+GET (/survey) - get the questions and the answers
+POST (/survey) - submit a survey and get results

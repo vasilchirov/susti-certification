@@ -6,10 +6,11 @@ app.use(express.json());
 
 const certificateRoutes = require('./routes/certificates');
 const labelRoutes = require('./routes/labels');
-
+const surveyRoutes = require('./routes/survey');
 
 app.use('/certificates', certificateRoutes);
 app.use('/labels', labelRoutes);
+app.use('/survey', surveyRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
