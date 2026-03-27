@@ -244,6 +244,11 @@ button:active {
     border-color: #10b981;
 }
 
+.cert-card .labels .badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+}
+
 .load-more {
     margin-top: auto;
     color: #10b981;
@@ -311,10 +316,10 @@ button:active {
     color: white;
 }
 
-.badge.blue { background: #3b82f6; }
-.badge.green { background: #10b981; }
-.badge.orange { background: #f97316; }
-.badge.purple { background: #8b5cf6; }
+.badge.green   { background: #10b981; } /* green */
+.badge.red    { background: #ef4444; } /* red */
+.badge.yellow  { background: #facc15; } /* yellow */
+.badge.orange  { background: #f97316; } /* orange */
 
 /* Lists */
 .list {
@@ -337,6 +342,7 @@ button:active {
 .cert-card.enhanced {
     position: relative;
     padding: 30px 20px 20px;
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
     gap: 10px;

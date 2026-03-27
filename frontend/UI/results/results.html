@@ -18,89 +18,70 @@
 <main class="content-wrapper">
     <header class="summary-header">
         <h1>Your <span class="green">Recommended Certificates</span></h1>
-        <p>Based on your answers, here are the best matches for your profile.</p>
+        <p>Based on your answers, here are your results and scores.</p>
     </header>
 
-    <section class="certificate-grid">
-
-        <div class="cert-card enhanced">
-            <div class="percent">85%</div>
-
-            <h3>Green Software Foundation</h3>
-            <p>Focuses on carbon efficiency, energy efficiency, and carbon awareness in code development.</p>
-
-            <div class="labels">
-                <span class="badge green">Sustainability</span>
-                <span class="badge blue">Software</span>
-            </div>
-
-            <h4 class="achieved">Achieved</h4>
-            <ul class="list good">
-                <li>Energy efficiency awareness</li>
-                <li>Carbon footprint knowledge</li>
-            </ul>
-
-            <h4 class="todo">TODO</h4>
-            <ul class="list bad">
-                <li>Green coding practices</li>
-                <li>Carbon reporting experience</li>
-            </ul>
-
-            <a href="/summary/green-software-foundation" class="load-more">See More →</a>
-        </div>
-
-        <div class="cert-card enhanced">
-            <div class="percent">70%</div>
-
-            <h3>TCO Certified</h3>
-            <p>The leading sustainability certification for IT products and comprehensive hardware lifecycle.</p>
-
-            <div class="labels">
-                <span class="badge purple">Hardware</span>
-                <span class="badge orange">Lifecycle</span>
-            </div>
-
-            <h4 class="achieved">Achieved</h4>
-            <ul class="list good">
-                <li>Hardware lifecycle knowledge</li>
-            </ul>
-
-            <h4 class="todo">TODO</h4>
-            <ul class="list bad">
-                <li>Product certification experience</li>
-                <li>Lifecycle management skills</li>
-            </ul>
-
-            <a href="/summary/tco-certified" class="load-more">See More →</a>
-        </div>
-
-        <div class="cert-card enhanced">
-            <div class="percent">60%</div>
-
-            <h3>Energy Star for IT</h3>
-            <p>Standardized efficiency ratings for servers, storage, and networking equipment.</p>
-
-            <div class="labels">
-                <span class="badge green">Efficiency</span>
-                <span class="badge blue">Infrastructure</span>
-            </div>
-
-            <h4 class="achieved">Achieved</h4>
-            <ul class="list good">
-                <li>Basic efficiency knowledge</li>
-            </ul>
-
-            <h4 class="todo">TODO</h4>
-            <ul class="list bad">
-                <li>Server optimization experience</li>
-                <li>Network energy assessment</li>
-            </ul>
-
-            <a href="/summary/energy-star-it" class="load-more">See More →</a>
-        </div>
-
+    <section class="certificate-grid" id="certificate-grid">
     </section>
 </main>
+
+<script>
+    const surveyResult = JSON.parse(localStorage.getItem("surveyResult")) || [];
+    const grid = document.getElementById("certificate-grid");
+
+    surveyResult.forEach(cert => {
+        const totalPercent = Math.round(cert.total * 100);
+
+        const card = document.createElement("div");
+        card.classList.add("cert-card", "enhanced");
+
+        const achievedLabels = [];
+        const todoLabels = [];
+        cert.labels.forEach(lblObj => {
+            const lblName = Object.keys(lblObj)[0];
+            let lblValue = Object.values(lblObj)[0];
+            lblValue = Math.round(lblValue * 100);
+            if (lblValue >= 50) {
+                achievedLabels.push(`${lblName}: ${lblValue}%`);
+            } else {
+                todoLabels.push(`${lblName}: ${lblValue}%`);
+            }
+        });
+
+        card.innerHTML = `
+            <div class="percent">${totalPercent}%</div>
+            <h3>${cert.name}</h3>
+            <div class="labels">
+            ${cert.labels.map(lblObj => {
+                const lblName = Object.keys(lblObj)[0];
+                let lblValue = Object.values(lblObj)[0];
+                lblValue = Math.round(lblValue * 100);
+
+                let colorClass = '';
+                if (lblValue < 20) colorClass = 'red';
+                else if (lblValue < 50) colorClass = 'orange';
+                else if (lblValue < 80) colorClass = 'yellow';
+                else colorClass = 'green';
+
+                return `<span class="badge ${colorClass}">${lblName}: ${lblValue}%</span>`;
+            }).join('')}
+            </div>
+            <h4 class="achieved">Achieved</h4>
+            <ul class="list good">
+                ${achievedLabels.map(lbl => `<li>${lbl}</li>`).join('')}
+            </ul>
+            <h4 class="todo">TODO</h4>
+            <div class="todo-zone">
+                <ul class="list bad">
+                    ${todoLabels.map(lbl => `<li>${lbl}</li>`).join('')}
+                </ul>
+            </div>
+            <a href="/summary/${cert.name.toLowerCase().replace(/\s+/g,'-')}" class="load-more">See More →</a>
+        `;
+
+        grid.appendChild(card);
+    });
+</script>
 
 </body>
 </html>
