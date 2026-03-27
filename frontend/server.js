@@ -22,7 +22,7 @@ app.get('/results', (req, res) => {
     res.sendFile(path.join(__dirname, 'UI/results/results.html'));
 });
 
-const PORT = 3000;
+const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`EcoCode is live at http://localhost:${PORT}`);
 });
