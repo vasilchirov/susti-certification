@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoCode | Questionnaire</title>
+
+```
+<link rel="stylesheet" href="/style.css">
+```
+
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="/" class="brand">EcoCode</a>
+        <div class="nav-links">
+            <a href="/summary" class="nav-item">Summary</a>
+            <a href="/questionnaire" class="nav-item active">Questionnaire</a>
+        </div>
+    </nav>
+
+```
+<main class="glass-card">
+    <div id="start-screen" class="quiz-step active">
+        <h1>Sustainability <span class="green">Audit</span></h1>
+        <p>Ready to see how green your code is? Click below to start.</p><br>
+        <button onclick="startQuiz()">Start Questionnaire</button>
+    </div>
+    <div id="question-container" class="quiz-step">
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        <h2 id="question-text"></h2>
+        <div class="options-list" id="options-list"></div>
+    </div>
+
+    <div id="result-screen" class="quiz-step">
+        <h1 class="green">Result Analysis</h1>
+        <p id="result-msg"></p><br>
+        <button onclick="location.reload()">Restart Quiz</button>
+    </div>
+</main>
+
+<script>
+    let questions = [];
+    let currentIndex = 0;
+    let answers = {};
+
+    async function startQuiz() {
+        document.getElementById('start-screen').classList.remove('active');
+        document.getElementById('question-container').classList.add('active');
+
+        try {
+            const res = await fetch('/survey');
+            const data = await res.json();
+
+            questions = Object.keys(data).map(key => ({
+                id: key,
+                q: data[key].q,
+                a: Object.keys(data[key].a)
+            }));
+
+            showQuestion();
+        } catch (err) {
+            console.error("Failed to load questions:", err);
+        }
+    }
+
+    function showQuestion() {
+        const q = questions[currentIndex];
+
+        document.getElementById('question-text').innerText = q.q;
+
+        const list = document.getElementById('options-list');
+        list.innerHTML = q.a
+            .map(opt => `
+                <button class="option-btn" onclick="handleAnswer('${opt}')">
+                    ${opt}
+                </button>
+            `)
+            .join('');
+
+        const progress = ((currentIndex) / questions.length) * 100;
+        document.getElementById('progress-bar').style.width = progress + "%";
+    }
+
+    function handleAnswer(answer) {
+        const q = questions[currentIndex];
+
+        answers[q.id] = answer;
+
+        currentIndex++;
+
+        if (currentIndex < questions.length) {
+            showQuestion();
+        } else {
+            submitSurvey();
+        }
+    }
+
+    async function submitSurvey() {
+        try {
+            const res = await fetch('/survey', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(answers)
+            });
+
+            const result = await res.json();
+
+            localStorage.setItem("surveyResult", JSON.stringify(result));
+
+            window.location.href = "/results";
+        } catch (err) {
+            console.error("Failed to submit survey:", err);
+        }
+    }
+</script>
+```
+
+</body>
+</html>
