@@ -1,6 +1,7 @@
 const { readJson, writeJson } = require('../services/fileService');
 
 const FILE = "data/certificates.json";
+const FILE_SUMMARY = "data/summaries.json";
 
 exports.getAllCertificates = (req, res) => {
     const data = readJson(FILE)
@@ -16,19 +17,28 @@ exports.getCerificate = (req, res) => {
 }
 
 exports.addCertificate = (req, res) => {
-    const data = readJson(FILE);
+    const dataCert = readJson(FILE);
+    const dataSummary = readJson(FILE_SUMMARY);
 
-    let newId = data.length
-    const newItem = {
+    let newId = dataCert.length
+    const newCertificate = {
         "id": newId,
         "name": req.body['name'],
         "labels": req.body['labels'],
         "weights": req.body['weights']
-    } 
+    }
 
-    data.push(newItem);
+    const newSummary = {
+        "id": newId,
+        "summary": req.body['summary'],
+        "links": req.body['links']
+    }
 
-    writeJson(FILE, data);
+    dataCert.push(newCertificate);
+    dataSummary.push(newSummary);
 
-    res.status(201).json(newItem);
+    writeJson(FILE, dataCert);
+    writeJson(FILE_SUMMARY, dataSummary);
+
+    res.status(201).json(newCertificate);
 }

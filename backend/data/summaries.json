@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "summary": "Blue Angel is a German government-backed eco-label that certifies products and services with reduced environmental impact, including software. For software, it focuses on ensuring that applications are energy-efficient, resource-efficient, and environmentally sustainable throughout their lifecycle.",
+    "links": [
+      "https://www.blauer-engel.de/en/productworld/software",
+      "https://produktinfo.blauer-engel.de/uploads/criteriafile/en/171/DE-UZ%20215-202406-en-Criteria-V4.pdf"
+    ]
+  },
+  {
+    "id": 1,
+    "summary": "Black Angel is a French government-backed eco-label that certifies products and services with reduced environmental impact, including software. For software, it focuses on ensuring that applications are energy-efficient, resource-efficient, and environmentally sustainable throughout their lifecycle.",
+    "links": [
+      "https://google.com"
+    ]
+  }
+]
