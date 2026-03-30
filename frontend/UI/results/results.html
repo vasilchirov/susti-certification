@@ -21,66 +21,121 @@
         <p>Based on your answers, here are your results and scores.</p>
     </header>
 
-    <section class="certificate-grid" id="certificate-grid">
-    </section>
+    <section class="certificate-grid" id="certificate-grid"></section>
 </main>
 
 <script>
+    const BACKEND_URL = "http://localhost:3000";
     const surveyResult = JSON.parse(localStorage.getItem("surveyResult")) || [];
     const grid = document.getElementById("certificate-grid");
 
-    surveyResult.forEach(cert => {
-        const totalPercent = Math.round(cert.total * 100);
+    async function loadResults() {
+        // Sort certificates descending by total %
+        const sortedResults = [...surveyResult].sort((a, b) => b.total - a.total);
 
-        const card = document.createElement("div");
-        card.classList.add("cert-card", "enhanced");
+        for (const cert of sortedResults) {
+            const totalPercent = Math.round(cert.total * 100);
 
-        const achievedLabels = [];
-        const todoLabels = [];
-        cert.labels.forEach(lblObj => {
-            const lblName = Object.keys(lblObj)[0];
-            let lblValue = Object.values(lblObj)[0];
-            lblValue = Math.round(lblValue * 100);
-            if (lblValue >= 50) {
-                achievedLabels.push(`${lblName}: ${lblValue}%`);
-            } else {
-                todoLabels.push(`${lblName}: ${lblValue}%`);
+            let summaryData = null;
+            try {
+                const res = await fetch(`${BACKEND_URL}/summary/${cert.id}`);
+                if (res.ok) {
+                    summaryData = await res.json();
+                }
+            } catch (err) {
+                console.error("Summary fetch failed", err);
             }
-        });
 
-        card.innerHTML = `
-            <div class="percent">${totalPercent}%</div>
-            <h3>${cert.name}</h3>
-            <div class="labels">
-            ${cert.labels.map(lblObj => {
+            const card = document.createElement("div");
+            card.classList.add("cert-card", "enhanced");
+
+            // Sort labels descending
+            const sortedLabels = [...cert.labels].sort((a, b) => {
+                const valA = Object.values(a)[0];
+                const valB = Object.values(b)[0];
+                return valB - valA;
+            });
+
+            const achievedLabels = [];
+            const todoLabels = [];
+
+            sortedLabels.forEach(lblObj => {
                 const lblName = Object.keys(lblObj)[0];
-                let lblValue = Object.values(lblObj)[0];
-                lblValue = Math.round(lblValue * 100);
+                let lblValue = Math.round(Object.values(lblObj)[0] * 100);
 
-                let colorClass = '';
-                if (lblValue < 20) colorClass = 'red';
-                else if (lblValue < 50) colorClass = 'orange';
-                else if (lblValue < 80) colorClass = 'yellow';
-                else colorClass = 'green';
+                if (lblValue >= 50) {
+                    achievedLabels.push(`${lblName}: ${lblValue}%`);
+                } else {
+                    todoLabels.push(`${lblName}: ${lblValue}%`);
+                }
+            });
 
-                return `<span class="badge ${colorClass}">${lblName}: ${lblValue}%</span>`;
-            }).join('')}
-            </div>
-            <h4 class="achieved">Achieved</h4>
-            <ul class="list good">
-                ${achievedLabels.map(lbl => `<li>${lbl}</li>`).join('')}
-            </ul>
-            <h4 class="todo">TODO</h4>
-            <div class="todo-zone">
-                <ul class="list bad">
-                    ${todoLabels.map(lbl => `<li>${lbl}</li>`).join('')}
+            card.innerHTML = `
+                <div class="percent">${totalPercent}%</div>
+                <h3>${cert.name}</h3>
+
+                ${summaryData?.summary 
+                    ? `<p class="description">${
+                        summaryData.summary.length > 200 
+                            ? summaryData.summary.slice(0, summaryData.summary.slice(0, 200).lastIndexOf(' ')) + '…'
+                            : summaryData.summary
+                    }</p>` 
+                    : ''
+                }
+
+                <div class="labels">
+                    ${sortedLabels.map(lblObj => {
+                        const lblName = Object.keys(lblObj)[0];
+                        let lblValue = Math.round(Object.values(lblObj)[0] * 100);
+
+                        let colorClass = '';
+                        if (lblValue < 20) colorClass = 'red';
+                        else if (lblValue < 50) colorClass = 'orange';
+                        else if (lblValue < 80) colorClass = 'yellow';
+                        else colorClass = 'green';
+
+                        return `<span class="badge ${colorClass}">${lblName}: ${lblValue}%</span>`;
+                    }).join('')}
+                </div>
+
+                <h4 class="achieved">Achieved</h4>
+                <ul class="list good links-list">
+                    ${achievedLabels.map(lbl => `<li>${lbl}</li>`).join('')}
                 </ul>
-            </div>
-            <a href="/summary/${cert.name.toLowerCase().replace(/\s+/g,'-')}" class="load-more">See More →</a>
-        `;
 
-        grid.appendChild(card);
-    });
+                ${
+                    todoLabels.length > 0 ? `
+                        <h4 class="todo">TODO</h4>
+                        <div class="todo-zone">
+                            <ul class="list bad links-list">
+                                ${todoLabels.map(lbl => `<li>${lbl}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''
+                }
+
+                ${
+                    summaryData?.links
+                        ? `<div class="links">
+                            <h4>Useful Links</h4>
+                            <ul class="links-list">
+                                ${summaryData.links.map(link => `
+                                    <li>
+                                        <a href="${link}" target="_blank">${link}</a>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>` : ''
+                }
+
+                <a href="/summary/${cert.id}" class="load-more">See More →</a>
+            `;
+
+            grid.appendChild(card);
+        }
+    }
+
+    loadResults();
 </script>
 
 </body>

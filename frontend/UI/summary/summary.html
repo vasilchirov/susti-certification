@@ -1,80 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoCode | Summary</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoCode | Summary</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
 
-    <link rel="stylesheet" href="/style.css">
 </head>
 <body class="scrollable">
-    <nav class="top-nav">
-        <a href="/" class="brand">EcoCode</a>
-        <div class="nav-links">
-            <a href="/summary" class="nav-item active">Summary</a>
-            <a href="/questionnaire" class="nav-item">Questionnaire</a>
+<nav class="top-nav">
+    <a href="/" class="brand">EcoCode</a>
+    <div class="nav-links">
+        <a href="/summary" class="nav-item active">Summary</a>
+        <a href="/questionnaire" class="nav-item">Questionnaire</a>
+    </div>
+</nav>
+
+<main class="content-wrapper">
+    <header class="summary-header">
+        <h1 class="title-centered">Sustainability <span class="green">Certificates</span></h1>
+        <p>Search and filter leading standards in Green Computing.</p>
+
+        <div class="controls">
+            <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterCards()">
+            <select id="categoryFilter" onchange="filterCards()">
+                <option value="all">All Categories</option>
+                <option value="software">Software</option>
+                <option value="hardware">Hardware</option>
+                <option value="infrastructure">Infrastructure</option>
+            </select>
+            <button id="createCertBtn">Create Certificate</button>
         </div>
-    </nav>
+    </header>
 
-    <main class="content-wrapper">
-        <header class="summary-header">
-            <h1>Sustainability <span class="green">Certificates</span></h1>
-            <p>Search and filter leading standards in Green Computing.</p>
-            
-            <div class="controls">
-                <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterCards()">
-                <select id="categoryFilter" onchange="filterCards()">
-                    <option value="all">All Categories</option>
-                    <option value="software">Software</option>
-                    <option value="hardware">Hardware</option>
-                    <option value="infrastructure">Infrastructure</option>
-                </select>
-            </div>
-        </header>
+    <section class="certificate-grid" id="certGrid"></section>
+</main>
 
-        <section class="certificate-grid" id="certGrid">
-            <div class="cert-card" data-category="software" data-name="green software foundation">
-                <h3>Green Software Foundation</h3>
-                <p>Focuses on carbon efficiency, energy efficiency, and carbon awareness in code.</p>
-                <a href="#" class="load-more">Load More</a>
-            </div>
+<div class="modal" id="certModal">
+    <div class="modal-content">
+        <h2>Create Certificate</h2>
+        <div id="formWarnings" class="warning"></div>
 
-            <div class="cert-card" data-category="hardware" data-name="tco certified">
-                <h3>TCO Certified</h3>
-                <p>The leading sustainability certification for IT products and hardware lifecycle.</p>
-                <a href="#" class="load-more">Load More</a>
-            </div>
+        <label>Title</label>
+        <input type="text" id="certTitle">
 
-            <div class="cert-card" data-category="infrastructure" data-name="energy star for it">
-                <h3>Energy Star for IT</h3>
-                <p>Standardized efficiency ratings for servers, storage, and networking equipment.</p>
-                <a href="#" class="load-more">Load More</a>
-            </div>
-        </section>
-    </main>
+        <label>Company Summary</label>
+        <textarea id="companySummary"></textarea>
 
-    <script>
-        function filterCards() {
-            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
-            const categoryQuery = document.getElementById('categoryFilter').value;
-            const cards = document.querySelectorAll('.cert-card');
+        <label>Certificate Summary</label>
+        <textarea id="certificateSummary"></textarea>
 
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                const category = card.getAttribute('data-category');
-                
-                const matchesSearch = name.includes(searchQuery);
-                const matchesCategory = categoryQuery === 'all' || category === categoryQuery;
+        <label>Applies To</label>
+        <textarea id="appliesTo"></textarea>
 
-                if (matchesSearch && matchesCategory) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
-            });
+        <label>Links</label>
+        <div id="linksContainer"></div>
+        <div class="link-row">
+            <input type="text" placeholder="Add link..." id="newLink">
+            <button class="addLinkBtn">+</button>
+        </div>
+
+        <label>Labels & Weights (1 to 10)</label>
+        <div id="labelsContainer"></div>
+
+        <button id="submitCertBtn">Add Certificate</button>
+        <button class="close-btn" id="closeModalBtn">Cancel</button>
+    </div>
+</div>
+
+<script>
+const BACKEND_URL = "http://localhost:3000";
+const certGrid = document.getElementById("certGrid");
+const certModal = document.getElementById("certModal");
+const createCertBtn = document.getElementById("createCertBtn");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const submitCertBtn = document.getElementById("submitCertBtn");
+const linksContainer = document.getElementById("linksContainer");
+const labelsContainer = document.getElementById("labelsContainer");
+const newLinkInput = document.getElementById("newLink");
+const formWarnings = document.getElementById("formWarnings");
+
+createCertBtn.addEventListener("click", () => certModal.style.display = "flex");
+closeModalBtn.addEventListener("click", () => { certModal.style.display = "none"; clearModalInputs(); });
+
+async function loadLabels() {
+    const resLabels = await fetch(`${BACKEND_URL}/labels`);
+    const allLabels = await resLabels.json();
+    labelsContainer.innerHTML = '';
+    for (const [id, name] of Object.entries(allLabels)) {
+        const div = document.createElement("div");
+        div.classList.add("label-row");
+        div.innerHTML = `
+            <input type="text" value="${name}" readonly>
+            <input type="number" data-id="${id}" placeholder="Weight (1-10)" min="1" max="10" step="1">
+        `;
+        labelsContainer.appendChild(div);
+    }
+}
+loadLabels();
+
+document.querySelector(".addLinkBtn").addEventListener("click", () => {
+    const link = newLinkInput.value.trim();
+    if (!link) return;
+    const div = document.createElement("div");
+    div.classList.add("link-row");
+    div.innerHTML = `<input type="text" value="${link}"><button class="removeBtn">x</button>`;
+    linksContainer.appendChild(div);
+    newLinkInput.value = "";
+    div.querySelector(".removeBtn").addEventListener("click", () => div.remove());
+});
+
+function showWarning(msg, color="yellow") {
+    formWarnings.textContent = msg;
+    formWarnings.style.color = color === "yellow" ? "#facc15" : (color === "green" ? "#10b981" : "#ef4444");
+    formWarnings.style.display = "block";
+}
+
+function clearModalInputs() {
+    document.getElementById("certTitle").value = "";
+    document.getElementById("companySummary").value = "";
+    document.getElementById("certificateSummary").value = "";
+    document.getElementById("appliesTo").value = "";
+    linksContainer.innerHTML = "";
+    labelsContainer.innerHTML = "";
+    newLinkInput.value = "";
+    formWarnings.style.display = "none";
+    loadLabels();
+}
+
+submitCertBtn.addEventListener("click", async () => {
+    formWarnings.style.display = "none";
+
+    const title = document.getElementById("certTitle").value.trim();
+    const company = document.getElementById("companySummary").value.trim();
+    const certSummary = document.getElementById("certificateSummary").value.trim();
+    const appliesTo = document.getElementById("appliesTo").value.trim();
+
+    const links = Array.from(linksContainer.querySelectorAll("input")).map(i => i.value.trim()).filter(Boolean);
+
+    // Labels with weight > 0 and ID
+    let labels = Array.from(labelsContainer.querySelectorAll(".label-row"))
+        .map(row => {
+            const weightInput = row.querySelector("input[type=number]");
+            let weight = parseFloat(weightInput.value);
+            if (isNaN(weight) || weight <= 0) return null;
+            return {id: weightInput.dataset.id, weight};
+        })
+        .filter(Boolean);
+
+    // Normalize weights so total sum = 1
+    const totalWeight = labels.reduce((sum, l) => sum + l.weight, 0);
+    if (totalWeight > 0) {
+        labels = labels.map(l => ({id: l.id, weight: l.weight / totalWeight}));
+    }
+
+    if (!title) { showWarning("Title is required."); return; }
+    if (!company && !certSummary && !appliesTo) { showWarning("At least one description section is required."); return; }
+
+    // Combine descriptions
+    const combinedSummary = [company, certSummary, appliesTo].filter(Boolean).join("\n\n");
+
+    const payload = { 
+        name: title, 
+        labels: labels.map(l => l.id), 
+        weights: labels.map(l => l.weight), 
+        summary: combinedSummary, 
+        links 
+    };
+
+    try {
+        const res = await fetch(`${BACKEND_URL}/certificates`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+            showWarning("Certificate added!", "green");
+            certModal.style.display = "none";
+            clearModalInputs();
+            certGrid.innerHTML = "";
+            loadCertificates();
+        } else {
+            const text = await res.text();
+            showWarning("Failed to add certificate: " + text);
         }
-    </script>
+    } catch (err) {
+        console.error(err);
+        showWarning("Error adding certificate.");
+    }
+});
+
+// Load certificates
+async function loadCertificates() {
+    try {
+        const resLabels = await fetch(`${BACKEND_URL}/labels`);
+        const labelMap = Object.fromEntries(Object.entries(await resLabels.json()).map(([id,name]) => [id,name]));
+        const resCerts = await fetch(`${BACKEND_URL}/certificates`);
+        const certs = await resCerts.json();
+
+        for (const cert of certs) {
+            let summaryData = null;
+            try { summaryData = (await (await fetch(`${BACKEND_URL}/summary/${cert.id}`)).json()) } catch(e){}
+
+            const labelNames = cert.labels?.map(id => labelMap[id]||id) || [];
+            const truncatedSummary = summaryData?.summary?.slice(0,250);
+
+            const card = document.createElement("div");
+            card.classList.add("cert-card");
+            card.setAttribute("data-name", cert.name.toLowerCase());
+            card.setAttribute("data-category", cert.category||"all");
+
+            card.innerHTML = `
+                <h3>${cert.name}</h3>
+                ${truncatedSummary ? `<p class="description">${truncatedSummary}</p>` : ''}
+                ${labelNames.length ? `<p class="labels-inline">${labelNames.join(', ')}</p>` : ''}
+                ${summaryData?.links?.length ? `<h4>Useful Links</h4>
+                <ul class="links-list indent">${summaryData.links.map(l=>`<li><a href="${l}" target="_blank">${l}</a></li>`).join('')}</ul>` : ''}
+                <a href="/summary/${cert.id}" class="load-more">See More →</a>
+            `;
+            certGrid.appendChild(card);
+        }
+    } catch(e){ console.error(e); }
+}
+loadCertificates();
+
+function filterCards() {
+    const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    const categoryQuery = document.getElementById('categoryFilter').value;
+    document.querySelectorAll('.cert-card').forEach(card => {
+        const name = card.getAttribute('data-name');
+        const category = card.getAttribute('data-category');
+        card.style.display = (name.includes(searchQuery) && (categoryQuery==='all'||category===categoryQuery)) ? "flex" : "none";
+    });
+}
+</script>
 </body>
 </html>
