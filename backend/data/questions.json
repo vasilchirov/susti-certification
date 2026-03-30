@@ -1,47 +1,446 @@
 {
     "1": {
-        "q": "Is the software measured and optimized for energy efficiency?",
+        "q": "Are sustainable software principles (e.g., energy efficiency, resource usage) recognized within the organization?",
         "a": {
-            "yes": [{"1" : 0.9}, {"3" : 0.1}],
-            "no": [{"1": 0.1}, {"3" : 0.05}]
+            "Not recognized: These principles are not known": [{"1" : 0}],
+            "Minimally recognized: Some individuals are familiar with them": [{"1": 0.084}],
+            "Moderately recognized: Principles are generally understood": [{"1": 0.167}],
+            "Fully recognized: Principles are widely known and clearly understood": [{"1": 0.25}]
         }
     },
     "2": {
-        "q": "Could the software (updates) require a hardware update?",
+        "q": "Are employees aware of sustainability-related terminology (e.g., carbon footprint, energy-efficient software)?",
         "a": {
-            "yes": [{"2": 0.1}],
-            "potentially": [{"2": 0.5}],
-            "no": [{"2": 1}]
+            "No familiarity: Terms are not known": [{"1": 0}],
+            "Basic familiarity: Some employees recognize the terms": [{"1": 0.084}],
+            "Moderate familiarity: Many employees understand the terminology": [{"1": 0.166}],
+            "High familiarity: Terminology is widely understood and correctly used": [{"1": 0.25}]
         }
     },
     "3": {
-        "q": "Are data formats well-documented? (to ensure data can be used by another software)",
+        "q": "Is there general awareness of sustainability as a relevant topic in software development?",
         "a": {
-            "yes": [{"3": 0.2}],
-            "no": [{"3": 0.01}]
+            "Not relevant: Sustainability is not seen as relevant": [{"1": 0}],
+            "Slight awareness: Some awareness of relevance exists": [{"1": 0.084}],
+            "Clear awareness: Sustainability is recognized as relevant": [{"1": 0.166}],
+            "Strong awareness: Sustainability is widely recognized as an important aspect of software development": [{"1": 0.25}]
         }
     },
     "4": {
-        "q": "Is the source code (ideally) fully or (at least) partially provided?",
+        "q": "Are employees aware that software has an environmental impact?",
         "a": {
-            "fully": [{"3": 0.7}],
-            "partially": [{"3": 0.35}],
-            "not provided": [{"3": 0.01}]
+            "No awareness: Employees are not aware that software impacts the environment": [{"1": 0}],
+            "Limited awareness: A few individuals are aware": [{"1": 0.084}],
+            "General awareness: Most employees understand that software has environmental impact": [{"1": 0.166}],
+            "Strong awareness: Awareness is widespread and commonly acknowledged": [{"1": 0.25}]
         }
     },
     "5": {
-        "q": "Koi e shampiona?",
+        "q": "Do software updates or system requirements drive hardware upgrades?",
         "a": {
-            "levskialealeale": [{"4": 0.7}, {"5": 0.3}, {"6": 0.6}, {"7": 0.5}, {"8": 0.9}, {"9": 0.3}],
-            "samo levski": [{"4": 0.4}, {"5": 0.2}, {"6": 0.5}, {"7": 0.7}, {"8": 0.6}, {"9": 0.25}],
-            "chorba": [{"4": 0.01}, {"5": 0.1}, {"6": 0.02}, {"7": 0.05}, {"8": 0.01}, {"9": 0.01}]
+            "Always: Software frequently requires hardware upgrades": [{"2": 0}],
+            "Often: Hardware upgrades are regularly needed": [{"2": 0.084}],
+            "Sometimes: Efforts are made to limit hardware impact": [{"2": 0.166}],
+            "Rarely/Never: Software is designed to minimize or avoid hardware upgrades": [{"2": 0.25}]
         }
     },
     "6": {
-        "q": "Kakvo e nebeto?",
+        "q": "Does your organization consider the use of renewable energy in infrastructure (e.g., green cloud providers)?",
         "a": {
-            "sinyo": [{"4": 0.3}, {"5": 0.7}, {"6": 0.4}, {"7": 0.5}, {"8": 0.1}, {"9": 0.7}],
-            "zeleno": [{"4": 0.54}, {"5": 0.11}, {"6": 0.22}, {"7": 0.34}, {"8": 0.05}, {"9": 0.3}]
+            "Not considered: Renewable energy is not a factor": [{"2": 0}],
+            "Limited consideration: Occasionally considered": [{"2": 0.084}],
+            "Considered: Included in infrastructure decisions": [{"2": 0.166}],
+            "Prioritized: Renewable energy is a key factor in infrastructure selection": [{"2": 0.25}]
+        }
+    },
+    "7": {
+        "q": "How does your organization manage hardware lifecycle (reuse, recycling, disposal)?",
+        "a": {
+            "No management: No structured approach to hardware lifecycle": [{"2": 0}],
+            "Basic management: Some informal reuse or disposal practices": [{"2": 0.084}],
+            "Managed lifecycle: Processes exist for reuse, recycling, and disposal": [{"2": 0.166}],
+            "Optimized lifecycle: Lifecycle is actively managed and optimized for sustainability": [{"2": 0.25}]
+        }
+    },
+    "8": {
+        "q": "Is your infrastructure (e.g., cloud, servers, data centers) optimized for energy efficiency?",
+        "a": {
+            "Not optimized: No consideration of energy efficiency in infrastructure": [{"2": 0}],
+            "Limited optimization: Some ad hoc efforts to improve efficiency": [{"2": 0.084}],
+            "Moderate optimization: Energy efficiency is considered in infrastructure decisions": [{"2": 0.166}],
+            "High optimization: Infrastructure is systematically optimized for energy efficiency": [{"2": 0.25}]
+        }
+    },
+    "9": {
+        "q": "Are outdated, temporary, or unused data regularly cleaned up?",
+        "a": {
+            "No cleanup: Data is rarely or never removed": [{"3": 0}],
+            "Occasional cleanup: Cleanup happens irregularly": [{"3": 0.11}],
+            "Regular cleanup: Data is periodically reviewed and cleaned": [{"3": 0.22}],
+            "Continuous cleanup: Automated or structured processes ensure ongoing data cleanup": [{"3": 0.34}]
+        }
+    },
+    "10": {
+        "q": "Do you actively reduce unnecessary data processing, transfer, or storage in your systems?",
+        "a": {
+            "No reduction: No effort to reduce data usage": [{"3": 0}],
+            "Limited reduction: Some awareness, but minimal action": [{"3": 0.11}],
+            "Active reduction: Efforts are made to limit unnecessary data usage": [{"3": 0.22}],
+            "Optimized reduction: Data flows are continuously optimized to minimize impact": [{"3": 0.33}]
+        }
+    },
+    "11": {
+        "q": "Do you maintain an inventory of your data assets (e.g., datasets, storage locations)?",
+        "a": {
+            "No inventory: No overview of stored data": [{"3": 0}],
+            "Partial inventory: Some datasets are documented": [{"3": 0.11}],
+            "Maintained inventory: Most data assets are tracked": [{"3": 0.22}],
+            "Comprehensive inventory: All data assets are systematically documented and maintained": [{"3": 0.33}]
+        }
+    },
+    "12": {
+        "q": "Is scalability considered to ensure efficient resource usage as the system grows?",
+        "a": {
+            "Not considered: Scalability is not addressed": [{"4": 0}],
+            "Minimally considered: Some awareness of scalability issues": [{"4": 0.066}],
+            "Considered: Scalability is part of system design": [{"4": 0.133}],
+            "Fully optimized: System is designed for efficient scaling with minimal resource waste": [{"4": 0.2}]
+        }
+    },
+    "13": {
+        "q": "Do you monitor software performance and resource usage (e.g., CPU, memory, execution time)?",
+        "a": {
+            "No monitoring: Performance is not tracked": [{"4": 0}],
+            "Basic monitoring: Limited or reactive monitoring": [{"4": 0.066}],
+            "Regular monitoring: Performance is tracked during development or operation": [{"4": 0.133}],
+            "Advanced monitoring: Continuous monitoring with optimization based on insights": [{"4": 0.2}]
+        }
+    },
+    "14": {
+        "q": "Is your software actively optimized for performance and resource efficiency?",
+        "a": {
+            "Not optimized: No active optimization is performed": [{"4": 0}],
+            "Limited optimization: Optimization happens occasionally": [{"4": 0.066}],
+            "Regular optimization: Performance and efficiency are considered during development": [{"4": 0.133}],
+            "Continuous optimization: Software is systematically optimized for efficiency throughout its lifecycle": [{"4": 0.20}]
+        }
+    },
+    "15": {
+        "q": "Are efforts made to reduce unnecessary computation or processing in your software?",
+        "a": {
+            "No effort: No focus on reducing computation": [{"4": 0}],
+            "Limited effort: Some awareness but little action": [{"4": 0.066}],
+            "Active effort: Developers reduce unnecessary processing when possible": [{"4": 0.133}],
+            "Optimized: Computation is systematically minimized and optimized": [{"4": 0.2}]
+        }
+    },
+    "16": {
+        "q": "Do you identify and analyze the most resource-intensive parts of your system (e.g., pipelines, processes)?",
+        "a": {
+            "Not identified: No insight into resource-intensive components": [{"4": 0}],
+            "Limited identification: Some issues are identified when problems arise": [{"4": 0.066}],
+            "Regular identification: Resource-intensive components are periodically analyzed": [{"4": 0.133}],
+            "Systematic identification: Continuous monitoring and analysis of resource-heavy components": [{"4": 0.2}]
+        }
+    },
+    "17": {
+        "q": "To what extent does your organization manage and document hardware, datasets, and infrastructure across their lifecycle?",
+        "a": {
+            "None: No inventory, lifecycle tracking, or documentation exists": [{"5": 0}],
+            "Basic: Partial or informal tracking (e.g., some hardware or datasets listed, not maintained)": [{"5": 0.084}],
+            "Structured: Maintained inventories of hardware, datasets, and infrastructure; lifecycle stages (reuse, disposal) are tracked": [{"5": 0.166}],
+            "Comprehensive: Fully integrated and regularly updated system including inventory, lifecycle tracking, and documented e-waste handling processes": [{"5": 0.25}]
+        }
+    },
+    "18": {
+        "q": "How well does the software support long-term use without requiring unnecessary hardware upgrades?",
+        "a": {
+            "Poor: Frequent updates require hardware upgrades or limit usability over time": [{"5": 0}],
+            "Limited: Some effort to maintain compatibility, but hardware upgrades are often needed": [{"5": 0.084}],
+            "Good: Software remains usable for expected lifespan (e.g., 3–5 years) with minimal hardware changes": [{"5": 0.166}],
+            "Excellent: Designed for long-term use, scalable across systems, and avoids unnecessary hardware upgrades": [{"5": 0.25}]
+        }
+    },
+    "19": {
+        "q": "How effectively can the software be removed at the end of its lifecycle?",
+        "a": {
+            "Not removable: Cannot be fully uninstalled or leaves significant residual data": [{"5": 0}],
+            "Partial: Uninstall possible but leaves some unnecessary data or dependencies": [{"5": 0.084}],
+            "Mostly clean: Can be removed with minor traces remaining": [{"5": 0.166}],
+            "Fully clean: Completely removable with no unnecessary residual data": [{"5": 0.25}]
+        }
+    },
+    "20": {
+        "q": "How does your organization track and manage electronic waste?",
+        "a": {
+            "None: No tracking or management of e-waste": [{"5": 0}],
+            "Informal: Some awareness or ad hoc handling, but no structured tracking": [{"5": 0.084}],
+            "Managed: E-waste is tracked and handled through defined processes": [{"5": 0.166}],
+            "Optimized: Comprehensive tracking, reporting, and active reuse/recycling strategies are implemented": [{"5": 0.25}]
+        }
+    },
+     "21": {
+        "q": "To what extent is sustainability considered in software design and technical decision-making?",
+        "a": {
+            "Not considered: Sustainability is not part of design or decision-making": [{"6": 0}],
+            "Ad hoc: Occasionally considered, but not systematically or documented": [{"6": 0.084}],
+            "Integrated: Sustainability is regularly considered, including trade-offs with performance": [{"6": 0.166}],
+            "Embedded: Sustainability is a core design principle, with explicit evaluation of trade-offs and documented decision processes": [{"6": 0.25}]
+        }
+    },
+    "22": {
+        "q": "How well does the software architecture support resource-efficient and scalable operation?",
+        "a": {
+            "Inefficient: No consideration of efficiency or scalability in architecture": [{"6": 0}],
+            "Basic: Some efficiency improvements exist, but not systematically applied": [{"6": 0.084}],
+            "Optimized: Architecture supports efficient resource use and scalable deployment": [{"6": 0.166}],
+            "Advanced: Actively designed using best practices (e.g., Green IT patterns) to minimize resource use across different scales": [{"6": 0.25}]
+        }
+    },
+    "23": {
+        "q": "To what extent is the software designed to be modular and interoperable with other systems?",
+        "a": {
+            "Closed: Monolithic design with little or no interoperability": [{"6": 0}],
+            "Limited: Some modular components or limited interoperability": [{"6": 0.084}],
+            "Flexible: Modular design and supports integration with other systems": [{"6": 0.166}],
+            "Highly flexible: Fully modular architecture with strong interoperability and easy extensibility": [{"6": 0.25}]
+        }
+    },
+    "24": {
+        "q": "How transparent and responsible is the software in its design and external interactions?",
+        "a": {
+            "Opaque: APIs undocumented, no transparency, potentially exploitative practices (e.g., opaque data use or targeting)": [{"6": 0}],
+            "Basic: Limited documentation and minimal transparency": [{"6": 0.084}],
+            "Clear: APIs are documented and generally follow recognized standards": [{"6": 0.166}],
+            "Fully transparent: Well-documented, standards-based APIs and clear, responsible design choices that avoid harmful practices": [{"6": 0.25}]
+        }
+    },
+     "25": {
+        "q": "To what extent do you measure resource usage and environmental impact (e.g., energy, emissions) of your software systems?",
+        "a": {
+            "None: No measurement of resource usage or environmental impact": [{"7": 0}],
+            "Basic: Limited or ad hoc measurement (e.g., occasional CPU/memory tracking, no emissions data)": [{"7": 0.084}],
+            "Systematic: Regular measurement of resource usage and energy consumption using appropriate tools": [{"7": 0.166}],
+            "Comprehensive: Includes detailed measurement of energy use and greenhouse gas emissions using standardized methods": [{"7": 0.25}]
+        }
+    },
+    "26": {
+        "q": "How effectively are resource usage and energy metrics monitored and made visible?",
+        "a": {
+            "No monitoring: No continuous monitoring or visualization": [{"7": 0}],
+            "Limited: Some monitoring exists, but not continuous or not easily accessible": [{"7": 0.084}],
+            "Active: Continuous monitoring with dashboards or tools for key metrics": [{"7": 0.166}],
+            "Advanced: Real-time monitoring with automated dashboards, alerts, and actionable insights": [{"7": 0.25}]
+        }
+    },
+    "27": {
+        "q": "To what extent are measurement insights used to optimize software efficiency across the development lifecycle?",
+        "a": {
+            "Not used: No optimization based on measurements": [{"7": 0}],
+            "Reactive: Occasional optimization based on identified issues": [{"7": 0.084}],
+            "Integrated: Regular profiling and optimization during development and operations": [{"7": 0.166}],
+            "Proactive: Continuous optimization embedded in workflows (e.g., CI/CD), with clear efficiency targets": [{"7": 0.25}]
+        }
+    },
+    "28": {
+        "q": "How are sustainability metrics reported and tracked over time?",
+        "a": {
+            "None: No reporting or historical tracking": [{"7": 0}],
+            "Informal: Some internal reporting, but no consistent structure or baseline": [{"7": 0.084}],
+            "Structured: Regular reporting with defined metrics and baseline comparisons": [{"7": 0.166}],
+            "Standardized & transparent: Reporting follows recognized standards and includes historical tracking, baselines, and demonstrated improvements (e.g., emissions reduction)": [{"7": 0.25}]
+        }
+    },
+    "29": {
+        "q": "To what extent does your organization share sustainability knowledge and practices internally?",
+        "a": {
+            "None: No sharing of sustainability knowledge or resources": [{"8": 0}],
+            "Informal: Occasional or ad hoc sharing within teams": [{"8": 0.11}],
+            "Structured: Regular sharing through meetings, documentation, or internal platforms": [{"8": 0.22}],
+            "Embedded: Systematic and organization-wide sharing integrated into workflows and culture": [{"8": 0.33}]
+        }
+    },
+    "30": {
+        "q": "To what extent does your organization share sustainability knowledge and collaborate with external groups?",
+        "a": {
+            "None: No external sharing or collaboration": [{"8": 0}],
+            "Limited: Occasional sharing (e.g., informal exchanges or isolated initiatives)": [{"8": 0.11}],
+            "Active: Regular sharing of resources, lessons learned, or participation in collaborations": [{"8": 0.22}],
+            "Leading: Proactively shares knowledge, contributes to communities, and supports other organizations": [{"8": 0.33}]
+        }
+    },
+    "31": {
+        "q": "How transparent and open are your software practices and resources?",
+        "a": {
+            "Opaque: Little to no documentation or openness": [{"8": 0}],
+            "Basic: Limited documentation; not aligned with common standards": [{"8": 0.11}],
+            "Clear: Well-documented APIs or practices, generally aligned with recognized standards": [{"8": 0.22}],
+            "Fully open: Comprehensive documentation, use of open standards, and openness in sharing practices and approaches": [{"8": 0.34}]
+        }
+    },
+    "32": {
+        "q": "Is sustainability information documented and accessible within your organization?",
+        "a": {
+            "Not documented: No sustainability information is documented or accessible.": [{"9": 0}],
+            "Limited documentation: Some information exists, but not necessarly structured and must be aware to find it.": [{"9": 0.11}],
+            "Accessible documentation: Sustainability information is documented and accessible to relevant stakeholders.": [{"9": 0.22}],
+            "Centralized & maintained: Documentation is centralized, well-structured, and regularly updated.": [{"9": 0.34}]
+        }
+    },
+    "33": {
+        "q": "Do you maintain and update sustainability-related documentation (e.g., best practices, guidelines)?",
+        "a": {
+            "No documentation: No documented practices or guidelines exist.": [{"9": 0}],
+            "Static documentation: Documentation exists but is not often updated.": [{"9": 0.11}],
+            "Regulare updates: Documentation is reviewed and updated occasionally.": [{"9": 0.22}],
+            "Actively maintained: Documentation is continuously updated and reflects current best practices.": [{"9": 0.33}]
+        }
+    },
+    "34": {
+        "q": "Do you maintain inventories of key assets (data, hardware, infrastructure)?",
+        "a": {
+            "No inventory: No structured inventory is maintained.": [{"9": 0}],
+            "Partial inventory: Some assets are tracked.": [{"9": 0.11}],
+            "Maintained inventory: Key assets (e.g., datasets, hardware, infrastructure) are tracked.": [{"9": 0.22}],
+            "Comprehensive inventory: All major assets are tracked, including lifecycle status (reuse, disposal, etc.).": [{"9": 0.33}]
+        }
+    },
+    "35": {
+        "q": "Are employees encouraged to consider sustainability in their daily work?",
+        "a": {
+            "Not encouraged: Sustainability is not part of daily work.": [{"10": 0}],
+            "Some encouraged: Sometimes when it is clearly relevant.": [{"10": 0.11}],
+            "Actively encouraged: Sustainability is regularly encouraged within teams.": [{"10": 0.22}],
+            "Embedded culture: Sustainability is a core part of daily decision-making.": [{"10": 0.34}]
+        }
+    },
+    "36": {
+        "q": "Are sustainability initiatives recognized within the organization?",
+        "a": {
+            "Not recognized: Sustainability efforts are not necessarly acknowledged.": [{"10": 0}],
+            "Occasionally recognized: When a major improvement is made.": [{"10": 0.11}],
+            "Regular recognition: Big efforts are recognized and supported.": [{"10": 0.22}],
+            "Actively promoted: Sustainability efforts,no mather the size are actively celebrated.": [{"10": 0.33}]
+        }
+    },
+    "37": {
+        "q": "Are sustainability values (e.g., ESG, diversity, ethics) integrated into your organization?",
+        "a": {
+            "Not integrated: No clear integration of sustainability values.": [{"10": 0}],
+            "Integrated: Some Values are embedded in multiple areas of the organization.": [{"10": 0.167}],
+            "Fully embedded: Sustainability, diversity, and ethics are core organizational principles.": [{"10": 0.33}]
+        }
+    },
+    "38": {
+        "q": "Are sustainability responsibilities clearly defined across the organization?",
+        "a": {
+            "Not defined: No clear responsibilities.": [{"11": 0}],
+            "Partially defined: Some key roles include sustainability responsibilities.": [{"11": 0.5}],
+            "Fully defined: Sustainability responsibilities are clearly defined and integrated organization-wide.": [{"11": 1}]
+        }
+    },
+    "39": {
+        "q": "Is your organization open for sustainability training: ",
+        "a": {
+            "No, we do not want that.": [{"12": 0}],
+            "Yes we are open to receive sustainability trainign as part of the process of obtaining a specific certification": [{"12": 0.34}]
+        }
+    },
+    "40": {
+        "q": "Do employees receive training on sustainable IT or green software practices?",
+        "a": {
+            "No training: No training is provided.": [{"12": 0}],
+            "Limited training: Training is occasional or optional.": [{"12": 0.11}],
+            "Regular training: Training is available for relevant roles.": [{"12": 0.22}],
+            "Structured training: Training is formalized and regularly updated.": [{"12": 0.33}]
+        }
+    },
+    "41": {
+        "q": "Are sustainability topics integrated into professional development and learning paths?",
+        "a": {
+            "Not included: Not part of development programs.": [{"12": 0}],
+            "Integrated: Included in structured learning paths.": [{"12": 0.167}],
+            "Core componen: A key part of professional development.": [{"12": 0.33}]
+        }
+    },
+    "42": {
+        "q": "Are new employees introduced to sustainable development practices during onboarding?",
+        "a": {
+            "Not included: No sustainability content in onboarding.": [{"13": 0}],
+            "Limited introduction: Yes it is mentioned introduction.": [{"13": 0.5}],
+            "Comprehensive onboarding: Clear guidelines, resources, and expectations are provided.": [{"13": 1}]
+        }
+    },
+    "43": {
+        "q": "Do you activaly research and stay updated on sustainability improvements relevant to your field ?",
+        "a": {
+            "We do not actively follow sustainability developments.": [{"14": 0}],
+            "We occasionally come across sustainability improvements, but there is no structured effort to stay updated.": [{"14": 0.167}],
+            "We regularly follow sustainability trends, research, or industry developments.": [{"14": 0.33}],
+            "We have a structured approach (e.g., assigned roles, scheduled reviews, subscriptions, or communities) to stay updated.": [{"14": 0.5}]
+        }
+    },
+    "44": {
+        "q": "How do you improve sustainability performance over time?",
+        "a": {
+            "We do not actively work on improving sustainability": [{"14": 0}],
+            "Improvements are occasional and informal": [{"14": 0.167}],
+            "We regularly review and implement sustainability improvements": [{"14": 0.34}],
+            "We continuously optimize systems based on structured processes and feedback": [{"14": 0.5}]
+        }
+    },
+    "45": {
+        "q": "Are sustainability skills considered when hiring new employees?",
+        "a": {
+            "Sustainability skills are not considered during hiring.": [{"15": 0}],
+            "Sustainability might be talked about but not actively evaluated.": [{"15": 0.33}],
+            "Sustainability skills are considered when relevant to the position.": [{"15": 0.67}],
+            "Sustainability skills are an important and consistent part of hiring decisions.": [{"15": 1}]
+        }
+    },
+    "46": {
+        "q": "Does your organization have formal policies for sustainable IT practices?",
+        "a": {
+            "No sustainability policies are in place.": [{"16": 0}],
+            "Policies exist but are informal or undocumented.": [{"16": 0.167}],
+            "Policies are documented but not consistently enforced.": [{"16": 0.33}],
+            "Policies are enforced, monitored, and regularly updated.": [{"16": 0.5}]
+        }
+    },
+    "47": {
+        "q": "Do you have defined sustainability goals (e.g., emissions reduction targets aligned with science-based targets)?",
+        "a": {
+            "No goals: We do not have defined sustainability goals.": [{"16": 0}],
+            "Informal goals: We have informal or unclear sustainability goals.": [{"16": 0.167}],
+            "Defined goals: We have clear and measurable sustainability goals.": [{"16": 0.34}],
+            "Science-based goals: Goals are aligned with recognized standards (e.g., science-based targets, net-zero).": [{"16": 0.5}]
+        }
+    },
+    "48": {
+        "q": "Do you measure greenhouse gas (GHG) emissions or carbon footprint?",
+        "a": {
+            "We do not measurement": [{"17": 0}],
+            "Some is measured": [{"17": 0.11}],
+            "We preforme regular measurement of emissions": [{"17": 0.22}],
+            "We systematically measure emissions using standardized methods": [{"17": 0.34}]
+        }
+    },
+    "49": {
+        "q": "Do you take action to reduce environmental impact?",
+        "a": {
+            "No action: We do not actively reduce environmental impact.": [{"17": 0}],
+            "Opportunistic action: We reduce impact only when convenient or as a side effect of other changes.": [{"17": 0.11}],
+            "Planned action: We take deliberate actions when clear opportunities arise.": [{"17": 0.22}],
+            "Continuous reduction: We actively and continuously reduce environmental impact through structured initiatives.": [{"17": 0.33}]
+        }
+    },
+    "50": {
+        "q": "Does your organization have environmental targets (e.g., net-zero)?",
+        "a": {
+            "No we do not have targets": [{"17": 0}],
+            "We have some informal targets": [{"17": 0.11}],
+            "We have defined targets and known targets (e.g., reduction goals)": [{"17": 0.22}],
+            "Science-based or net-zero aligned targets": [{"17": 0.33}]
         }
     }
 }
