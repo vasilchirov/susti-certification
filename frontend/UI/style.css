@@ -403,3 +403,30 @@ button:active {
 .links-list li {
     margin-bottom: 6px;
 }
+
+.labels-inline {
+    font-weight: bold;
+    color: #f8fafc;
+}
+
+/* Prepend emoji to certificate names */
+.cert-card h3::before {
+    content: "🌿 ";
+}
+
+/* Indent links slightly */
+.indent li {
+    margin-left: 15px;
+}
+
+/* Truncated description style */
+.description {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Certificate Detail Page Title */
+#certDetail h3 {
+    text-align: center;       /* Center the title */
+    font-size: 3rem;          /* Make it bigger */
+    margin-bottom: 20px;      /* Add some space below */
+}

@@ -6,7 +6,6 @@
     <title>EcoCode | Summary</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="/style.css">
 </head>
 <body class="scrollable">
@@ -22,7 +21,7 @@
         <header class="summary-header">
             <h1>Sustainability <span class="green">Certificates</span></h1>
             <p>Search and filter leading standards in Green Computing.</p>
-            
+
             <div class="controls">
                 <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterCards()">
                 <select id="categoryFilter" onchange="filterCards()">
@@ -34,28 +33,81 @@
             </div>
         </header>
 
-        <section class="certificate-grid" id="certGrid">
-            <div class="cert-card" data-category="software" data-name="green software foundation">
-                <h3>Green Software Foundation</h3>
-                <p>Focuses on carbon efficiency, energy efficiency, and carbon awareness in code.</p>
-                <a href="#" class="load-more">Load More</a>
-            </div>
-
-            <div class="cert-card" data-category="hardware" data-name="tco certified">
-                <h3>TCO Certified</h3>
-                <p>The leading sustainability certification for IT products and hardware lifecycle.</p>
-                <a href="#" class="load-more">Load More</a>
-            </div>
-
-            <div class="cert-card" data-category="infrastructure" data-name="energy star for it">
-                <h3>Energy Star for IT</h3>
-                <p>Standardized efficiency ratings for servers, storage, and networking equipment.</p>
-                <a href="#" class="load-more">Load More</a>
-            </div>
-        </section>
+        <section class="certificate-grid" id="certGrid"></section>
     </main>
 
     <script>
+        const BACKEND_URL = "http://localhost:3000";
+        const certGrid = document.getElementById("certGrid");
+
+        // Truncate text without cutting words
+        function truncateText(text, maxLength) {
+            if (!text) return '';
+            if (text.length <= maxLength) return text;
+            let truncated = text.substr(0, maxLength);
+            if (text[maxLength] !== ' ') {
+                const lastSpace = truncated.lastIndexOf(' ');
+                if (lastSpace > 0) truncated = truncated.substr(0, lastSpace);
+            }
+            return truncated + '...';
+        }
+
+        async function loadCertificates() {
+            try {
+                // Fetch all labels
+                const resLabels = await fetch(`${BACKEND_URL}/labels`);
+                const labelsData = await resLabels.json();
+                const labelMap = Object.fromEntries(
+                    Object.entries(labelsData).map(([id, name]) => [id, name])
+                );
+
+                // Fetch all certificates
+                const resCerts = await fetch(`${BACKEND_URL}/certificates`);
+                const certificates = await resCerts.json();
+
+                for (const cert of certificates) {
+                    // Fetch summary for each certificate
+                    let summaryData = null;
+                    try {
+                        const resSummary = await fetch(`${BACKEND_URL}/summary/${cert.id}`);
+                        if (resSummary.ok) summaryData = await resSummary.json();
+                    } catch (err) {
+                        console.error(`Failed to fetch summary for certificate ${cert.id}`, err);
+                    }
+
+                    // Convert label IDs to label names
+                    const labelNames = cert.labels?.map(id => labelMap[id] || id) || [];
+
+                    const truncatedSummary = truncateText(summaryData?.summary, 250);
+
+                    const card = document.createElement("div");
+                    card.classList.add("cert-card");
+                    card.setAttribute("data-name", cert.name.toLowerCase());
+                    card.setAttribute("data-category", cert.category || "all");
+
+                    card.innerHTML = `
+                        <h3>${cert.name}</h3>
+                        ${truncatedSummary ? `<p class="description">${truncatedSummary}</p>` : ''}
+                        ${labelNames.length ? `<p class="labels-inline">${labelNames.join(', ')}</p>` : ''}
+                        ${summaryData?.links?.length ? `
+                            <h4>Useful Links</h4>
+                            <ul class="links-list indent">
+                                ${summaryData.links.map(link => `<li><a href="${link}" target="_blank">${link}</a></li>`).join('')}
+                            </ul>
+                        ` : ''}
+                        <a href="/summary/${cert.id}" class="load-more">See More →</a>
+                    `;
+
+                    certGrid.appendChild(card);
+                }
+
+            } catch (err) {
+                console.error("Failed to load certificates:", err);
+            }
+        }
+
+        loadCertificates();
+
         function filterCards() {
             const searchQuery = document.getElementById('searchInput').value.toLowerCase();
             const categoryQuery = document.getElementById('categoryFilter').value;
@@ -64,15 +116,11 @@
             cards.forEach(card => {
                 const name = card.getAttribute('data-name');
                 const category = card.getAttribute('data-category');
-                
+
                 const matchesSearch = name.includes(searchQuery);
                 const matchesCategory = categoryQuery === 'all' || category === categoryQuery;
 
-                if (matchesSearch && matchesCategory) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
+                card.style.display = (matchesSearch && matchesCategory) ? "flex" : "none";
             });
         }
     </script>
