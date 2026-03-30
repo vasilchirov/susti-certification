@@ -122,7 +122,7 @@
             "Not optimized: No active optimization is performed": [{"4": 0}],
             "Limited optimization: Optimization happens occasionally": [{"4": 0.066}],
             "Regular optimization: Performance and efficiency are considered during development": [{"4": 0.133}],
-            "Continuous optimization: Software is systematically optimized for efficiency throughout its lifecycle": [{"4": 0.25}]
+            "Continuous optimization: Software is systematically optimized for efficiency throughout its lifecycle": [{"4": 0.20}]
         }
     },
     "15": {
@@ -257,7 +257,7 @@
             "None: No sharing of sustainability knowledge or resources": [{"8": 0}],
             "Informal: Occasional or ad hoc sharing within teams": [{"8": 0.11}],
             "Structured: Regular sharing through meetings, documentation, or internal platforms": [{"8": 0.22}],
-            "Embedded: Systematic and organization-wide sharing integrated into workflows and culture": [{"8": 0.34}]
+            "Embedded: Systematic and organization-wide sharing integrated into workflows and culture": [{"8": 0.33}]
         }
     },
     "30": {
@@ -275,7 +275,172 @@
             "Opaque: Little to no documentation or openness": [{"8": 0}],
             "Basic: Limited documentation; not aligned with common standards": [{"8": 0.11}],
             "Clear: Well-documented APIs or practices, generally aligned with recognized standards": [{"8": 0.22}],
-            "Fully open: Comprehensive documentation, use of open standards, and openness in sharing practices and approaches": [{"8": 0.33}]
+            "Fully open: Comprehensive documentation, use of open standards, and openness in sharing practices and approaches": [{"8": 0.34}]
+        }
+    },
+    "32": {
+        "q": "Is sustainability information documented and accessible within your organization?",
+        "a": {
+            "Not documented: No sustainability information is documented or accessible.": [{"9": 0}],
+            "Limited documentation: Some information exists, but not necessarly structured and must be aware to find it.": [{"9": 0.11}],
+            "Accessible documentation: Sustainability information is documented and accessible to relevant stakeholders.": [{"9": 0.22}],
+            "Centralized & maintained: Documentation is centralized, well-structured, and regularly updated.": [{"9": 0.34}]
+        }
+    },
+    "33": {
+        "q": "Do you maintain and update sustainability-related documentation (e.g., best practices, guidelines)?",
+        "a": {
+            "No documentation: No documented practices or guidelines exist.": [{"9": 0}],
+            "Static documentation: Documentation exists but is not often updated.": [{"9": 0.11}],
+            "Regulare updates: Documentation is reviewed and updated occasionally.": [{"9": 0.22}],
+            "Actively maintained: Documentation is continuously updated and reflects current best practices.": [{"9": 0.33}]
+        }
+    },
+    "34": {
+        "q": "Do you maintain inventories of key assets (data, hardware, infrastructure)?",
+        "a": {
+            "No inventory: No structured inventory is maintained.": [{"9": 0}],
+            "Partial inventory: Some assets are tracked.": [{"9": 0.11}],
+            "Maintained inventory: Key assets (e.g., datasets, hardware, infrastructure) are tracked.": [{"9": 0.22}],
+            "Comprehensive inventory: All major assets are tracked, including lifecycle status (reuse, disposal, etc.).": [{"9": 0.33}]
+        }
+    },
+    "35": {
+        "q": "Are employees encouraged to consider sustainability in their daily work?",
+        "a": {
+            "Not encouraged: Sustainability is not part of daily work.": [{"10": 0}],
+            "Some encouraged: Sometimes when it is clearly relevant.": [{"10": 0.11}],
+            "Actively encouraged: Sustainability is regularly encouraged within teams.": [{"10": 0.22}],
+            "Embedded culture: Sustainability is a core part of daily decision-making.": [{"10": 0.34}]
+        }
+    },
+    "36": {
+        "q": "Are sustainability initiatives recognized within the organization?",
+        "a": {
+            "Not recognized: Sustainability efforts are not necessarly acknowledged.": [{"10": 0}],
+            "Occasionally recognized: When a major improvement is made.": [{"10": 0.11}],
+            "Regular recognition: Big efforts are recognized and supported.": [{"10": 0.22}],
+            "Actively promoted: Sustainability efforts,no mather the size are actively celebrated.": [{"10": 0.33}]
+        }
+    },
+    "37": {
+        "q": "Are sustainability values (e.g., ESG, diversity, ethics) integrated into your organization?",
+        "a": {
+            "Not integrated: No clear integration of sustainability values.": [{"10": 0}],
+            "Integrated: Some Values are embedded in multiple areas of the organization.": [{"10": 0.167}],
+            "Fully embedded: Sustainability, diversity, and ethics are core organizational principles.": [{"10": 0.33}]
+        }
+    },
+    "38": {
+        "q": "Are sustainability responsibilities clearly defined across the organization?",
+        "a": {
+            "Not defined: No clear responsibilities.": [{"11": 0}],
+            "Partially defined: Some key roles include sustainability responsibilities.": [{"11": 0.5}],
+            "Fully defined: Sustainability responsibilities are clearly defined and integrated organization-wide.": [{"11": 1}]
+        }
+    },
+    "39": {
+        "q": "Is your organization open for sustainability training: ",
+        "a": {
+            "No, we do not want that.": [{"12": 0}],
+            "Yes we are open to receive sustainability trainign as part of the process of obtaining a specific certification": [{"12": 0.34}]
+        }
+    },
+    "40": {
+        "q": "Do employees receive training on sustainable IT or green software practices?",
+        "a": {
+            "No training: No training is provided.": [{"12": 0}],
+            "Limited training: Training is occasional or optional.": [{"12": 0.11}],
+            "Regular training: Training is available for relevant roles.": [{"12": 0.22}],
+            "Structured training: Training is formalized and regularly updated.": [{"12": 0.33}]
+        }
+    },
+    "41": {
+        "q": "Are sustainability topics integrated into professional development and learning paths?",
+        "a": {
+            "Not included: Not part of development programs.": [{"12": 0}],
+            "Integrated: Included in structured learning paths.": [{"12": 0.167}],
+            "Core componen: A key part of professional development.": [{"12": 0.33}]
+        }
+    },
+    "42": {
+        "q": "Are new employees introduced to sustainable development practices during onboarding?",
+        "a": {
+            "Not included: No sustainability content in onboarding.": [{"13": 0}],
+            "Limited introduction: Yes it is mentioned introduction.": [{"13": 0.5}],
+            "Comprehensive onboarding: Clear guidelines, resources, and expectations are provided.": [{"13": 1}]
+        }
+    },
+    "43": {
+        "q": "Do you activaly research and stay updated on sustainability improvements relevant to your field ?",
+        "a": {
+            "We do not actively follow sustainability developments.": [{"14": 0}],
+            "We occasionally come across sustainability improvements, but there is no structured effort to stay updated.": [{"14": 0.167}],
+            "We regularly follow sustainability trends, research, or industry developments.": [{"14": 0.33}],
+            "We have a structured approach (e.g., assigned roles, scheduled reviews, subscriptions, or communities) to stay updated.": [{"14": 0.5}]
+        }
+    },
+    "44": {
+        "q": "How do you improve sustainability performance over time?",
+        "a": {
+            "We do not actively work on improving sustainability": [{"14": 0}],
+            "Improvements are occasional and informal": [{"14": 0.167}],
+            "We regularly review and implement sustainability improvements": [{"14": 0.34}],
+            "We continuously optimize systems based on structured processes and feedback": [{"14": 0.5}]
+        }
+    },
+    "45": {
+        "q": "Are sustainability skills considered when hiring new employees?",
+        "a": {
+            "Sustainability skills are not considered during hiring.": [{"15": 0}],
+            "Sustainability might be talked about but not actively evaluated.": [{"15": 0.33}],
+            "Sustainability skills are considered when relevant to the position.": [{"15": 0.67}],
+            "Sustainability skills are an important and consistent part of hiring decisions.": [{"15": 1}]
+        }
+    },
+    "46": {
+        "q": "Does your organization have formal policies for sustainable IT practices?",
+        "a": {
+            "No sustainability policies are in place.": [{"16": 0}],
+            "Policies exist but are informal or undocumented.": [{"16": 0.167}],
+            "Policies are documented but not consistently enforced.": [{"16": 0.33}],
+            "Policies are enforced, monitored, and regularly updated.": [{"16": 0.5}]
+        }
+    },
+    "47": {
+        "q": "Do you have defined sustainability goals (e.g., emissions reduction targets aligned with science-based targets)?",
+        "a": {
+            "No goals: We do not have defined sustainability goals.": [{"16": 0}],
+            "Informal goals: We have informal or unclear sustainability goals.": [{"16": 0.167}],
+            "Defined goals: We have clear and measurable sustainability goals.": [{"16": 0.34}],
+            "Science-based goals: Goals are aligned with recognized standards (e.g., science-based targets, net-zero).": [{"16": 0.5}]
+        }
+    },
+    "48": {
+        "q": "Do you measure greenhouse gas (GHG) emissions or carbon footprint?",
+        "a": {
+            "We do not measurement": [{"17": 0}],
+            "Some is measured": [{"17": 0.11}],
+            "We preforme regular measurement of emissions": [{"17": 0.22}],
+            "We systematically measure emissions using standardized methods": [{"17": 0.34}]
+        }
+    },
+    "49": {
+        "q": "Do you take action to reduce environmental impact?",
+        "a": {
+            "No action: We do not actively reduce environmental impact.": [{"17": 0}],
+            "Opportunistic action: We reduce impact only when convenient or as a side effect of other changes.": [{"17": 0.11}],
+            "Planned action: We take deliberate actions when clear opportunities arise.": [{"17": 0.22}],
+            "Continuous reduction: We actively and continuously reduce environmental impact through structured initiatives.": [{"17": 0.33}]
+        }
+    },
+    "50": {
+        "q": "Does your organization have environmental targets (e.g., net-zero)?",
+        "a": {
+            "No we do not have targets": [{"17": 0}],
+            "We have some informal targets": [{"17": 0.11}],
+            "We have defined targets and known targets (e.g., reduction goals)": [{"17": 0.22}],
+            "Science-based or net-zero aligned targets": [{"17": 0.33}]
         }
     }
 }

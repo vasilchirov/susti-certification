@@ -1,17 +1,37 @@
 [
   {
     "id": 0,
-    "summary": "Blue Angel is a German government-backed eco-label that certifies products and services with reduced environmental impact, including software. For software, it focuses on ensuring that applications are energy-efficient, resource-efficient, and environmentally sustainable throughout their lifecycle.",
-    "links": [
-      "https://www.blauer-engel.de/en/productworld/software",
-      "https://produktinfo.blauer-engel.de/uploads/criteriafile/en/171/DE-UZ%20215-202406-en-Criteria-V4.pdf"
-    ]
+    "summary": "About the company:\nGreenSeal is a consultancy dedicated to helping organizations reduce the environmental footprint of their software. Their mission is to make environmentally sustainable software the default and integrate sustainability into the very core of software engineering and artificial intelligence. \n\nAbout the certificate:\nThe Green Software Practices (GSP) Certification recognizes organizations that actively design, develop, and operate software and AI systems with reduced environmental impact, and provides a practical framework to assess and improve sustainability practices across the software lifecycle. It does this in three levels:\nLevel 1: Self-assessment\nLevel 2: Verified certification\nLevel 3: Verified+ with expert support",
+    "links": ["https://www.greenseal.dev/gsp/"]
   },
   {
     "id": 1,
-    "summary": "Black Angel is a French government-backed eco-label that certifies products and services with reduced environmental impact, including software. For software, it focuses on ensuring that applications are energy-efficient, resource-efficient, and environmentally sustainable throughout their lifecycle.",
-    "links": [
-      "https://google.com"
-    ]
+    "summary": "",
+    "links": []
+  },
+  {
+    "id": 2,
+    "summary": "",
+    "links": []
+  },
+  {
+    "id": 3,
+    "summary": "",
+    "links": []
+  },
+  {
+    "id": 4,
+    "summary": "",
+    "links": []
+  },
+  {
+    "id": 5,
+    "summary": "",
+    "links": []
+  },
+  {
+    "id": 6,
+    "summary": "",
+    "links": []
   }
 ]
