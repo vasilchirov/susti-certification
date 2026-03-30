@@ -61,7 +61,7 @@
             <button class="addLinkBtn">+</button>
         </div>
 
-        <label>Labels & Weights (0 to 1)</label>
+        <label>Labels & Weights (1 to 10)</label>
         <div id="labelsContainer"></div>
 
         <button id="submitCertBtn">Add Certificate</button>
@@ -93,7 +93,7 @@ async function loadLabels() {
         div.classList.add("label-row");
         div.innerHTML = `
             <input type="text" value="${name}" readonly>
-            <input type="number" data-id="${id}" placeholder="Weight (0-1)" min="0" max="1" step="0.01">
+            <input type="number" data-id="${id}" placeholder="Weight (1-10)" min="1" max="10" step="1">
         `;
         labelsContainer.appendChild(div);
     }
@@ -140,7 +140,7 @@ submitCertBtn.addEventListener("click", async () => {
     const links = Array.from(linksContainer.querySelectorAll("input")).map(i => i.value.trim()).filter(Boolean);
 
     // Labels with weight > 0 and ID
-    const labels = Array.from(labelsContainer.querySelectorAll(".label-row"))
+    let labels = Array.from(labelsContainer.querySelectorAll(".label-row"))
         .map(row => {
             const weightInput = row.querySelector("input[type=number]");
             let weight = parseFloat(weightInput.value);
@@ -148,6 +148,12 @@ submitCertBtn.addEventListener("click", async () => {
             return {id: weightInput.dataset.id, weight};
         })
         .filter(Boolean);
+
+    // Normalize weights so total sum = 1
+    const totalWeight = labels.reduce((sum, l) => sum + l.weight, 0);
+    if (totalWeight > 0) {
+        labels = labels.map(l => ({id: l.id, weight: l.weight / totalWeight}));
+    }
 
     if (!title) { showWarning("Title is required."); return; }
     if (!company && !certSummary && !appliesTo) { showWarning("At least one description section is required."); return; }
@@ -157,8 +163,8 @@ submitCertBtn.addEventListener("click", async () => {
 
     const payload = { 
         name: title, 
-        labels: labels.map(l=>l.id), 
-        weights: labels.map(l=>l.weight), 
+        labels: labels.map(l => l.id), 
+        weights: labels.map(l => l.weight), 
         summary: combinedSummary, 
         links 
     };
