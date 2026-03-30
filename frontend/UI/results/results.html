@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoCode | Results</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="scrollable">
+
+<nav class="top-nav">
+    <a href="/" class="brand">EcoCode</a>
+    <div class="nav-links">
+        <a href="/summary" class="nav-item">Summary</a>
+        <a href="/questionnaire" class="nav-item">Questionnaire</a>
+    </div>
+</nav>
+
+<main class="content-wrapper">
+    <header class="summary-header">
+        <h1>Your <span class="green">Recommended Certificates</span></h1>
+        <p>Based on your answers, here are your results and scores.</p>
+    </header>
+
+    <section class="certificate-grid" id="certificate-grid">
+    </section>
+</main>
+
+<script>
+    const surveyResult = JSON.parse(localStorage.getItem("surveyResult")) || [];
+    const grid = document.getElementById("certificate-grid");
+
+    surveyResult.forEach(cert => {
+        const totalPercent = Math.round(cert.total * 100);
+
+        const card = document.createElement("div");
+        card.classList.add("cert-card", "enhanced");
+
+        const achievedLabels = [];
+        const todoLabels = [];
+        cert.labels.forEach(lblObj => {
+            const lblName = Object.keys(lblObj)[0];
+            let lblValue = Object.values(lblObj)[0];
+            lblValue = Math.round(lblValue * 100);
+            if (lblValue >= 50) {
+                achievedLabels.push(`${lblName}: ${lblValue}%`);
+            } else {
+                todoLabels.push(`${lblName}: ${lblValue}%`);
+            }
+        });
+
+        card.innerHTML = `
+            <div class="percent">${totalPercent}%</div>
+            <h3>${cert.name}</h3>
+            <div class="labels">
+            ${cert.labels.map(lblObj => {
+                const lblName = Object.keys(lblObj)[0];
+                let lblValue = Object.values(lblObj)[0];
+                lblValue = Math.round(lblValue * 100);
+
+                let colorClass = '';
+                if (lblValue < 20) colorClass = 'red';
+                else if (lblValue < 50) colorClass = 'orange';
+                else if (lblValue < 80) colorClass = 'yellow';
+                else colorClass = 'green';
+
+                return `<span class="badge ${colorClass}">${lblName}: ${lblValue}%</span>`;
+            }).join('')}
+            </div>
+            <h4 class="achieved">Achieved</h4>
+            <ul class="list good">
+                ${achievedLabels.map(lbl => `<li>${lbl}</li>`).join('')}
+            </ul>
+            <h4 class="todo">TODO</h4>
+            <div class="todo-zone">
+                <ul class="list bad">
+                    ${todoLabels.map(lbl => `<li>${lbl}</li>`).join('')}
+                </ul>
+            </div>
+            <a href="/summary/${cert.name.toLowerCase().replace(/\s+/g,'-')}" class="load-more">See More →</a>
+        `;
+
+        grid.appendChild(card);
+    });
+</script>
+
+</body>
+</html>
