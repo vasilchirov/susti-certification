@@ -51,6 +51,7 @@ exports.processSurvey = (answers) => {
             total += lblScore * cert["weights"][i];
         }
         const resCert = {
+            "id": cert["id"],
             "name": cert["name"],
             "labels": certLblScores,
             "total": Number(total.toFixed(2))

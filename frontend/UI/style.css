@@ -393,3 +393,13 @@ button:active {
     flex-direction: column;
     gap: 5px;
 }
+
+.links-list {
+    list-style: none;   /* remove bullets */
+    padding-left: 20px; /* shift the links to the right */
+    margin: 0;
+}
+
+.links-list li {
+    margin-bottom: 6px;
+}
