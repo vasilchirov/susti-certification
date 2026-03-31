@@ -2,36 +2,51 @@
   {
     "id": 0,
     "summary": "About the company:\nGreenSeal is a consultancy dedicated to helping organizations reduce the environmental footprint of their software. Their mission is to make environmentally sustainable software the default and integrate sustainability into the very core of software engineering and artificial intelligence. \n\nAbout the certificate:\nThe Green Software Practices (GSP) Certification recognizes organizations that actively design, develop, and operate software and AI systems with reduced environmental impact, and provides a practical framework to assess and improve sustainability practices across the software lifecycle. It does this in three levels:\nLevel 1: Self-assessment\nLevel 2: Verified certification\nLevel 3: Verified+ with expert support",
-    "links": ["https://www.greenseal.dev/gsp/"]
+    "links": [
+      "https://www.greenseal.dev/gsp/"
+    ]
   },
   {
     "id": 1,
-    "summary": "About the company:\nThe Software Sustainability Institute is an organisation dedicated to improving software used in research. It promotes awareness of the importance of sustainable research software, its developers, and its role in advancing scientific work, particularly within the UK.\n\nAbout the certificate:\nGreen DiSC is an open-access certification scheme designed to help research groups, computing teams, and institutions reduce the environmental impact of their computing activities. It is applicable across research domains and defines criteria for research groups, research computing infrastructure teams, and central sustainability teams. The certification follows a tiered system (Bronze, Silver, Gold), enabling continuous improvement in sustainability practices.\n\nWho it applies to:\nGreen DiSC is mainly intended for:\n- Research groups and central groups\n- Universities\n- Organisation\nCurrently focused on non-profits/academic certification, but working on providing certification for the private sector and industry ", 
-    "links": ["https://www.software.ac.uk/GreenDiSC"]
+    "summary": "About the company:\nThe Software Sustainability Institute is an organisation dedicated to improving software used in research. It promotes awareness of the importance of sustainable research software, its developers, and its role in advancing scientific work, particularly within the UK.\n\nAbout the certificate:\nGreen DiSC is an open-access certification scheme designed to help research groups, computing teams, and institutions reduce the environmental impact of their computing activities. It is applicable across research domains and defines criteria for research groups, research computing infrastructure teams, and central sustainability teams. The certification follows a tiered system (Bronze, Silver, Gold), enabling continuous improvement in sustainability practices.\n\nWho it applies to:\nGreen DiSC is mainly intended for:\n- Research groups and central groups\n- Universities\n- Organisation\nCurrently focused on non-profits/academic certification, but working on providing certification for the private sector and industry ",
+    "links": [
+      "https://www.software.ac.uk/GreenDiSC"
+    ]
   },
   {
     "id": 2,
     "summary": "About the company:\nThe Blue Angel (Blauer Engel) is the environmental label of the German Federal Government. It has been established for over 45 years and is known as an independent and credible ecolabel with strict environmental standards for products and services.\n\nAbout the certification:\nThe Blue Angel label for software focuses on improving energy and resource efficiency in information and communication technology. It aims to reduce overall energy consumption while providing developers with guidance to identify inefficiencies and implement measures that lower environmental impact.\n\nWho it applies to:\nThis certification applies to software products / applications running on PCs, mobile devices, or servers",
-    "links": ["https://www.blauer-engel.de/en/productworld/software", "https://produktinfo.blauer-engel.de/uploads/criteriafile/en/171/DE-UZ%20215-202406-en-Criteria-V4.pdf"]
+    "links": [
+      "https://www.blauer-engel.de/en/productworld/software",
+      "https://produktinfo.blauer-engel.de/uploads/criteriafile/en/171/DE-UZ%20215-202406-en-Criteria-V4.pdf"
+    ]
   },
   {
     "id": 3,
     "summary": "About the company:\nThe IFRS Foundation is an independent, not-for-profit organization responsible for developing global financial reporting standards. Its mission is to improve transparency, accountability, and efficiency in capital markets by providing high-quality reporting frameworks used worldwide.\n\nAbout the certification:\nWhile not a certification, the SASB Standards are widely used by companies to disclose sustainability-related information to investors. These standards help organizations communicate material environmental, social, and governance (ESG) factors that may impact financial performance over time, supporting better decision-making and transparency.\n\nWho it is aimed for: \nThis reporting standard is intended for companies of any industry",
-    "links": ["https://www.ifrs.org/issued-standards/sasb-standards/"]
+    "links": [
+      "https://www.ifrs.org/issued-standards/sasb-standards/"
+    ]
   },
   {
     "id": 4,
     "summary": "About the company:\nTecnovy is a Swiss training and IT consulting company that focuses on helping individuals and organizations build technical skills and improve career opportunities through education and professional development.\n\nAbout the certification:\nThe iSAQB GREEN course trains professionals to design energy-efficient software architectures that reduce CO₂ emissions. It covers sustainable cloud practices, Green IT patterns, and techniques for optimizing software to minimize energy consumption. Participants gain the skills needed to build scalable and environmentally responsible systems.\n\nWho it applies to:\nThis training is intended for individuals who want to expand their knowledge on sustainable software development",
-    "links": ["https://tecnovy.com/en/isaqb/green"]
+    "links": [
+      "https://tecnovy.com/en/isaqb/green"
+    ]
   },
   {
     "id": 5,
     "summary": "About the company:\nIFGICT is an international ICT federation and non-profit organization that develops industry standards and certifications. It focuses on advancing the ICT profession by defining best practices and supporting professional development through structured certification programs.\n\nAbout the certification:\nThe IFGICT Green IT Professional certification equips IT professionals with knowledge and practical skills to implement sustainable IT practices. The program covers key concepts in Green IT and demonstrates a professional’s ability to contribute to environmentally responsible technology use within organizations.\n\nWho it applies to:\nThis training is intended for individuals who want to expand their knowledge on sustainable software development",
-    "links": ["https://ifgict.org/green-it-certification/"]
+    "links": [
+      "https://ifgict.org/green-it-certification/"
+    ]
   },
   {
     "id": 6,
     "summary": "About the company:\nThe Carbon Trust is an organisation dedicated to accelerating the transition to a decarbonized future. It works with businesses, governments, and financial institutions globally, supported by a team of sustainability experts across various disciplines.\n\nAbout the certification:\nThe Route to Net Zero Standard helps organizations measure, manage, and reduce their carbon emissions. It provides independent verification of emissions reductions and supports organizations in developing credible carbon reduction strategies while aligning with long-term net-zero goals. It also helps organizations communicate their progress and commitments transparently. The certification has three tiers guide you on your journey to Net Zero: Taking action, Advancing, Leading.\n\nWho it applies to:\nThis certification applies to any organisation",
-    "links": ["https://www.carbontrust.com/what-we-do/net-zero-transition-planning-and-delivery/route-to-net-zero-standard "]
+    "links": [
+      "https://www.carbontrust.com/what-we-do/net-zero-transition-planning-and-delivery/route-to-net-zero-standard "
+    ]
   }
 ]
