@@ -1008,3 +1008,54 @@ button:active {
     min-height: 120px;   /* optional, to ensure it doesn’t get too small */
     font-size: 1rem;     /* optional, make text bigger */
 }
+
+.recommendations {
+    margin-left: 20px;
+    margin-top: 8px; /* spacing below label */
+    font-size: 0.9em;
+    color: white !important; /* force white text */
+    display: none;
+  }
+  .recommendations li {
+    color: white !important;
+    list-style-type: circle;
+  }
+
+  .toggle-arrow {
+    cursor: pointer;
+    color: gray;
+    border: none;
+    background: none;
+    font-size: 0.8em;
+    padding: 0;
+    margin-left: 5px;
+  }
+  .toggle-arrow:focus {
+    outline: none;
+    background: none;
+  }
+  .rotated {
+    transform: rotate(180deg);
+    transition: transform 0.2s;
+  }
+
+  /* Flex only for label + arrow */
+  .label-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  li.label-item {
+    margin-bottom: 5px;
+  }
+
+  .label-name {
+    color: white;
+    font-weight: 500;
+  }
+
+  .label-percentage {
+    color: white; /* force percentage white too */
+    font-weight: 400;
+  }
