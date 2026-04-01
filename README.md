@@ -1,7 +1,5 @@
 # susti-certification
 
-Minimal setup and run guide.
-
 ## Requirements
 
 - Node.js 18+ (or newer)
