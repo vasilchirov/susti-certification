@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoCode | Home</title>
+    <title>VerdiCompass | Home</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/style.css">
 </head>
+
+<div id="disclaimer-modal" class="modal">
+    <div class="modal-content">
+        <h2>⚠️ Disclaimer</h2>
+        <p>
+            The information and scores provided on this website are intended as recommendations only. 
+            We are not currently officially partnered with any certification bodies, and therefore 
+            our evaluations should not be considered definitive or guaranteed.
+        </p>
+        <button id="accept-disclaimer">I Understand</button>
+    </div>
+</div>
+
 <body>
     <nav class="top-nav">
-        <a href="/" class="brand">EcoCode</a>
+        <a href="/" class="brand">VerdiCompass</a>
         <div class="nav-links">
             <a href="/summary" class="nav-item">Summary</a>
             <a href="/questionnaire" class="nav-item">Questionnaire</a>
@@ -29,4 +42,20 @@
         </div>
     </main>
 </body>
+
+<script>
+    const modal = document.getElementById("disclaimer-modal");
+    const button = document.getElementById("accept-disclaimer");
+
+    // Show only if not accepted before
+    if (!localStorage.getItem("disclaimerAccepted")) {
+        modal.style.display = "flex";
+    }
+
+    button.addEventListener("click", () => {
+        localStorage.setItem("disclaimerAccepted", "true");
+        modal.style.display = "none";
+    });
+</script>
+
 </html>
