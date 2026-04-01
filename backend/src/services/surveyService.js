@@ -28,12 +28,20 @@ exports.processSurvey = (answers) => {
     const labelsScores = Object.fromEntries(
         Object.keys(labels).map(key => [key, 0])
     );
+    const labelsRecommendations = Object.fromEntries(
+        Object.keys(labels).map(key => [key, []])
+    )
     
     for (const [id, question] of Object.entries(questions)) {
         const ans = answers[id];
         for (const obj of question["a"][ans]) {
             const [lblID, score] = Object.entries(obj)[0];
             labelsScores[lblID] += score;
+
+            const rec = question["rec"][ans];
+            if (rec != "") {
+                labelsRecommendations[lblID].push(question["rec"][ans]);
+            }
         }
     }
 
@@ -41,18 +49,22 @@ exports.processSurvey = (answers) => {
 
     for (const cert of certificates) {
         let certLblScores = [];
+        let recommendations = [];
         let total = 0;
         for (let i = 0; i < cert["labels"].length; i++) {
             const lblID = cert["labels"][i];
             const lblName = labels[lblID]
             const lblScore = Number(labelsScores[lblID].toFixed(2))
             certLblScores.push({ [lblName]: lblScore })
+            recommendations.push({ [lblName]: labelsRecommendations[lblID]})
 
             total += lblScore * cert["weights"][i];
         }
         const resCert = {
+            "id": cert["id"],
             "name": cert["name"],
             "labels": certLblScores,
+            "recommendations": recommendations,
             "total": Number(total.toFixed(2))
         }
 

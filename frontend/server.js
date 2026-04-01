@@ -22,6 +22,11 @@ app.get('/results', (req, res) => {
     res.sendFile(path.join(__dirname, 'UI/results/results.html'));
 });
 
+// Serve certificate detail page
+app.get('/summary/:id', (req, res) => {
+    res.sendFile(path.join(__dirname, 'UI/summary/certificate.html'));
+});
+
 const PORT = 5000;
 app.listen(PORT, () => {
     console.log(`EcoCode is live at http://localhost:${PORT}`);
