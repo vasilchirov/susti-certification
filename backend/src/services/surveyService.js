@@ -18,6 +18,7 @@ const certificatesPath = "data/certificates.json";
  * Each object contains:
  * - name: {string} Certificate name
  * - labels: {Array<Object>} Label scores (label name → score)
+ * - recommendations: {Array<Object>} Lable recommendations (label name -> recommendation)
  * - total: {number} Final weighted score
  */
 exports.processSurvey = (answers) => {
